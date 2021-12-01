@@ -16,7 +16,7 @@ class EventController:
             if event.ui_element == self.start_button:
                 return handle_start_pause(state, event.ui_element)
             if event.ui_element == self.reset_button:
-                return handle_reset(state)
+                return handle_reset(state, self.start_button)
             if event.ui_element == self.next_button:
                 return handle_next(state, self.start_button)
             else:
@@ -33,8 +33,11 @@ def handle_quit(state):
     return state
 
 
-def handle_reset(state):
+def handle_reset(state, start_button):
     state['grid'].reset()
+    state['animation_running'] = False
+    start_button.set_text('Start')
+
     return state
 
 
