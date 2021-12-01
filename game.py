@@ -31,6 +31,8 @@ ui_background.fill(pygame.Color(UI_BACKGROUND_COLOR))
 
 manager = pygame_gui.UIManager((WINDOW_WIDTH, WINDOW_HEIGHT))
 
+manager.preload_fonts([{'name': 'fira_code', 'point_size': 14, 'style': 'bold'}])
+
 start_button = pygame_gui.elements.UIButton(
                 relative_rect=pygame.Rect((70, GAME_HEIGHT + 30), (BUTTON_WIDTH, BUTTON_HEIGHT)),
                 text='Start',
@@ -47,8 +49,10 @@ next_button = pygame_gui.elements.UIButton(
             manager=manager)
 
 rules_button = pygame_gui.elements.UIButton(
-            relative_rect=pygame.Rect((4*70 + 3*BUTTON_WIDTH, GAME_HEIGHT + 30),(BUTTON_WIDTH, BUTTON_HEIGHT)),
+            relative_rect=pygame.Rect((4*70 + 3*BUTTON_WIDTH, GAME_HEIGHT + 30), (BUTTON_WIDTH, BUTTON_HEIGHT)),
             text='Rules',
+            tool_tip_text='<b>Rule 1:</b> Any active cell with two or three live neighbours survives.<br><b>Rule 2: </b>Any inactive cell with three live neighbours becomes active.<br><b>Rule 3:</b> All other active cells die in the next generation.',
+            starting_height=7,
             manager=manager)
 
 g = Grid((WINDOW_WIDTH, GAME_HEIGHT), window_surface, 15, 15)
@@ -67,16 +71,18 @@ controller.register_ui_element('reset', reset_button)
 controller.register_ui_element('next', next_button)
 controller.register_ui_element('info', rules_button)
 
-def display(game_state):
+
+def display(state):
     window_surface.blit(game_background, (0, 0))
     window_surface.blit(ui_background, (0, GAME_HEIGHT))
+
+    if state['animation_running']:
+        state['grid'].update()
+
+    state['grid'].draw(window_surface)
     manager.draw_ui(window_surface)
-
-    if game_state['animation_running']:
-        game_state['grid'].update()
-
-    game_state['grid'].draw(window_surface)
     pygame.display.update()
+
 
 while game_state['is_running']:
     current_grid = game_state['grid']
