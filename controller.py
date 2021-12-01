@@ -3,20 +3,22 @@ import pygame_gui
 
 
 class EventController:
-    def register_ui_element(self, name, element_reference):
-        setattr(self, name, element_reference)
+    def __init__(self, start: pygame_gui.elements.UIButton, next: pygame_gui.elements.UIButton, reset: pygame_gui.elements.UIButton):
+        self.start_button = start
+        self.next_button = next
+        self.reset_button = reset
 
     def assess(self, event, state):
         if event.type == pygame.QUIT:
             return handle_quit(state)
 
         if event.type == pygame.USEREVENT and event.user_type == pygame_gui.UI_BUTTON_PRESSED:
-            if event.ui_element == self.__getattribute__('start'):
+            if event.ui_element == self.start_button:
                 return handle_start_pause(state, event.ui_element)
-            if event.ui_element == self.__getattribute__('reset'):
+            if event.ui_element == self.reset_button:
                 return handle_reset(state)
-            if event.ui_element == self.__getattribute__('next'):
-                return handle_next(state)
+            if event.ui_element == self.next_button:
+                return handle_next(state, self.start_button)
             else:
                 return {}
 
@@ -48,6 +50,8 @@ def handle_grid_click(state):
     return {}
 
 
-def handle_next(state):
+def handle_next(state, start_button):
     state['grid'].update()
+    state['animation_running'] = False
+    start_button.set_text('Start')
     return {}

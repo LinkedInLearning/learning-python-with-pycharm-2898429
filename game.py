@@ -65,11 +65,7 @@ g.flip(3, 3)
 clock = pygame.time.Clock()
 
 game_state = {'is_running': True, 'animation_running': False, 'grid': g}
-controller = EventController()
-controller.register_ui_element('start', start_button)
-controller.register_ui_element('reset', reset_button)
-controller.register_ui_element('next', next_button)
-controller.register_ui_element('info', rules_button)
+controller = EventController(start=start_button, next=next_button, reset=reset_button)
 
 
 def display(state):
@@ -86,7 +82,7 @@ def display(state):
 
 while game_state['is_running']:
     current_grid = game_state['grid']
-    time_delta = clock.tick(5) / 1000.0
+    time_delta = clock.tick(50) / 1000.0
     for event in pygame.event.get():
         # pass the event and the game state to the controller
         # controller figures out what kind of event to address
