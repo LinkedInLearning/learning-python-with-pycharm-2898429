@@ -57,7 +57,6 @@ class Grid:
         for i, row in enumerate(self.rects):
             for j, rect in enumerate(row):
                 if rect.collidepoint(pos):
-                    print(f'collided with {rect} at pos {i}, {j}')
                     self.cells[i][j].flip()
 
     def reset(self):
