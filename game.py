@@ -36,16 +36,19 @@ manager.preload_fonts([{'name': 'fira_code', 'point_size': 14, 'style': 'bold'}]
 start_button = pygame_gui.elements.UIButton(
                 relative_rect=pygame.Rect((70, GAME_HEIGHT + 30), (BUTTON_WIDTH, BUTTON_HEIGHT)),
                 text='Start',
+                tool_tip_text='Start or Pause the simulation',
                 manager=manager)
 
 reset_button = pygame_gui.elements.UIButton(
                 relative_rect=pygame.Rect((2*70 + BUTTON_WIDTH, GAME_HEIGHT + 30), (BUTTON_WIDTH, BUTTON_HEIGHT)),
                 text='Reset',
+                tool_tip_text='Clear all cells from the screen',
                 manager=manager)
 
 next_button = pygame_gui.elements.UIButton(
-            relative_rect=pygame.Rect((3*70 + 2*BUTTON_WIDTH, GAME_HEIGHT + 30),(BUTTON_WIDTH, BUTTON_HEIGHT)),
+            relative_rect=pygame.Rect((3*70 + 2*BUTTON_WIDTH, GAME_HEIGHT + 30), (BUTTON_WIDTH, BUTTON_HEIGHT)),
             text='Next',
+            tool_tip_text='Move the simulation one step forward then pause it',
             manager=manager)
 
 rules_button = pygame_gui.elements.UIButton(
