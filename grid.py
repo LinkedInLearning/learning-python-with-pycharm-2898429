@@ -16,7 +16,6 @@ class Grid:
         self.cells = [
             [Cell((PADDING + x * (cell_width + CELL_OFFSET), PADDING + y * (cell_height + CELL_OFFSET)), (cell_width, cell_height)) for x in range(width)] for y in
             range(height)]
-        self.rects = []
 
     def __str__(self):
         output = ""
@@ -49,15 +48,15 @@ class Grid:
                 cell.update()
 
     def draw(self, surface):
-        self.rects = []
         for row in self.cells:
-            self.rects.append([cell.draw(surface) for cell in row])
+            for cell in row:
+                cell.draw(surface)
 
     def check_clicks(self, pos):
-        for i, row in enumerate(self.rects):
-            for j, rect in enumerate(row):
-                if rect.collidepoint(pos):
-                    self.cells[i][j].flip()
+        for row in self.cells:
+            for cell in row:
+                if cell.collidepoint(pos):
+                    cell.flip()
 
     def reset(self):
         for row in self.cells:
