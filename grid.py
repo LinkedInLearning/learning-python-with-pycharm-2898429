@@ -63,6 +63,38 @@ class Grid:
             for cell in row:
                 cell.set_inactive()
 
+    def insert_shape(self, shape_name):
+        match shape_name:
+            case 'glider':
+                self.flip(2, 1)
+                self.flip(3, 2)
+                self.flip(1, 3)
+                self.flip(2, 3)
+                self.flip(3, 3)
+            case 'pentadecathlon':
+                self.flip(5, 7)
+                self.flip(6, 7)
+                self.flip(7, 6)
+                self.flip(7, 8)
+                self.flip(8, 7)
+                self.flip(9, 7)
+                self.flip(10, 7)
+                self.flip(11, 7)
+                self.flip(12, 6)
+                self.flip(12, 8)
+                self.flip(13, 7)
+                self.flip(14, 7)
+            case 'lightweight':
+                self.flip(0, 0)
+                self.flip(3, 0)
+                self.flip(4, 1)
+                self.flip(0, 2)
+                self.flip(4, 2)
+                self.flip(1, 3)
+                self.flip(2, 3)
+                self.flip(3, 3)
+                self.flip(4, 3)
+
     # cells have up to 8 neighbours, except cells in the boundary rows and columns.
     # this iterator yields a given position's neighbors
     def __count_living_neighbors(self, col: int, row: int):

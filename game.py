@@ -55,17 +55,13 @@ rules_button = pygame_gui.elements.UIButton(
             starting_height=7,
             manager=manager)
 
-shapes_selector = pygame_gui.elements.UIDropDownMenu(['glider', 'pulsar', 'lightweight'],
+shapes_selector = pygame_gui.elements.UIDropDownMenu(['glider', 'pentadecathlon', 'lightweight'],
                                                      'glider',
                                                      relative_rect=pygame.Rect((5*70+4*BUTTON_WIDTH, GAME_HEIGHT + 30), (BUTTON_WIDTH*2, BUTTON_HEIGHT)),
                                                      manager=manager)
 
-g = Grid((WINDOW_WIDTH, GAME_HEIGHT), window_surface, 15, 15)
-g.flip(2, 1)
-g.flip(3, 2)
-g.flip(1, 3)
-g.flip(2, 3)
-g.flip(3, 3)
+g = Grid((WINDOW_WIDTH, GAME_HEIGHT), window_surface, 20, 15)
+g.insert_shape('glider')
 
 clock = pygame.time.Clock()
 
@@ -87,7 +83,7 @@ def display(state):
 
 while game_state['is_running']:
     current_grid = game_state['grid']
-    time_delta = clock.tick(50) / 1000.0
+    time_delta = clock.tick(5) / 1000.0
     for event in pygame.event.get():
         # pass the event and the game state to the controller
         # controller figures out what kind of event to address
