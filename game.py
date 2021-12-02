@@ -85,7 +85,7 @@ def display(state):
 
 while game_state['is_running']:
     current_grid = game_state['grid']
-    time_delta = clock.tick(50) / 1000.0
+    time_delta = clock.tick(5) / 1000.0
     for event in pygame.event.get():
         # pass the event and the game state to the controller
         # controller figures out what kind of event to address
