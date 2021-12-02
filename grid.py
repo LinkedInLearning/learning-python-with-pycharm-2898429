@@ -39,7 +39,7 @@ class Grid:
         # navigate through the grid, for each cell find its valid neighbors
         for row_index, row in enumerate(self.cells):
             for col_index, cell in enumerate(row):
-                cell.set_future_state(self.__count_living_neighbors(col_index, row_index))
+                cell.set_future_state(self.__count_living_neighbors(col_index))
 
     def update(self):
         self.__compute_future_states()
