@@ -25,6 +25,15 @@ class Grid:
             output += "\n"
         return output
 
+    def get_cell(self, col: int, row: int):
+        if col < 0 or col >= self.width:
+            raise RuntimeError(
+                f"error getting cell at column {col}: expected column number between 0 and {self.width - 1}")
+        if row < 0 or row >= self.height:
+            raise RuntimeError(
+                f"error getting cell at row {row}: expected column number between 0 and {self.height - 1}")
+        return self.cells[row][col]
+
     def flip(self, col: int, row: int):
         if col < 0 or col >= self.width:
             raise RuntimeError(
