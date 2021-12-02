@@ -8,9 +8,9 @@ GAME_BACKGROUND_COLOR = '#0F0F00'
 UI_BACKGROUND_COLOR = '#FFFFFF'
 
 pygame.init()
-WINDOW_WIDTH = 1000
-WINDOW_HEIGHT = 600
-UI_HEIGHT = 100
+WINDOW_WIDTH = 1200
+WINDOW_HEIGHT = 650
+UI_HEIGHT = 130
 
 GAME_HEIGHT = WINDOW_HEIGHT - UI_HEIGHT
 
@@ -58,17 +58,18 @@ rules_button = pygame_gui.elements.UIButton(
             starting_height=7,
             manager=manager)
 
-g = Grid((WINDOW_WIDTH, GAME_HEIGHT), window_surface, 15, 15)
-g.flip(2, 1)
-g.flip(3, 2)
-g.flip(1, 3)
-g.flip(2, 3)
-g.flip(3, 3)
+shapes_selector = pygame_gui.elements.UIDropDownMenu(['glider', 'pentadecathlon', 'lightweight'],
+                                                     'glider',
+                                                     relative_rect=pygame.Rect((5*70+4*BUTTON_WIDTH, GAME_HEIGHT + 30), (BUTTON_WIDTH*2, BUTTON_HEIGHT)),
+                                                     manager=manager)
+
+g = Grid((WINDOW_WIDTH, GAME_HEIGHT), window_surface, 20, 15)
+g.insert_shape('glider')
 
 clock = pygame.time.Clock()
 
 game_state = {'is_running': True, 'animation_running': False, 'grid': g}
-controller = EventController(start=start_button, next=next_button, reset=reset_button)
+controller = EventController(start=start_button, next=next_button, reset=reset_button, shapes=shapes_selector)
 
 pygame.mixer.music.load("./sound_effects/intro.mid")
 

@@ -3,10 +3,11 @@ import pygame_gui
 
 
 class EventController:
-    def __init__(self, start: pygame_gui.elements.UIButton, next: pygame_gui.elements.UIButton, reset: pygame_gui.elements.UIButton):
+    def __init__(self, start: pygame_gui.elements.UIButton, next: pygame_gui.elements.UIButton, reset: pygame_gui.elements.UIButton, shapes: pygame_gui.elements.UIDropDownMenu):
         self.start_button = start
         self.next_button = next
         self.reset_button = reset
+        self.shapes_selector = shapes
 
     def assess(self, event, state):
         if event.type == pygame.QUIT:
@@ -21,6 +22,9 @@ class EventController:
                 return handle_next(state, self.start_button)
             else:
                 return {}
+
+        if event.type == pygame.USEREVENT and event.user_type == pygame_gui.UI_DROP_DOWN_MENU_CHANGED:
+            return handle_new_shape(state, event.text, self.start_button)
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             return handle_grid_click(state)
@@ -43,6 +47,14 @@ def handle_reset(state, start_button):
 
     return state
 
+
+def handle_new_shape(state, shape, start_button):
+    state['grid'].reset()
+    state['grid'].insert_shape(shape)
+    state['animation_running'] = False
+    start_button.set_text('Start')
+
+    return state
 
 def handle_start_pause(state, button):
     state['animation_running'] = not state['animation_running']
