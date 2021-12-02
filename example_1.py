@@ -13,7 +13,7 @@ x = pygame.Rect((0, 0), (600, 300))
 pygame.init()
 y =pygame.Rect((0, 100), (600, 300))
 
-window_surface= pygame.display.set_mode((1200, 600))
+window_surface= pygame.display.set_mode((600, 300))
 z = pygame.Rect((0, 200), (600, 300))
 
 token = 0
