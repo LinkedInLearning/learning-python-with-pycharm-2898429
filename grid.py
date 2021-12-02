@@ -5,7 +5,7 @@ PADDING = 7
 
 
 class Grid:
-    def __init__(self, screen_dimensions: tuple, surface, width: int, height: int):
+    def __init__(self, screen_dimensions: tuple, width: int, height: int):
         self.width = width
         self.height = height
 
@@ -42,7 +42,9 @@ class Grid:
                 cell.set_future_state(self.__count_living_neighbors(col_index, row_index))
 
     def update(self):
-        pass
+        for row in self.cells:
+            for cell in row:
+                cell.update()
 
     def draw(self, surface):
         for row in self.cells:
