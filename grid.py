@@ -42,10 +42,7 @@ class Grid:
                 cell.set_future_state(self.__count_living_neighbors(col_index, row_index))
 
     def update(self):
-        self.__compute_future_states()
-        for row in self.cells:
-            for cell in row:
-                cell.update()
+        pass
 
     def draw(self, surface):
         for row in self.cells:
