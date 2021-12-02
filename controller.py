@@ -38,6 +38,9 @@ def handle_reset(state, start_button):
     state['animation_running'] = False
     start_button.set_text('Start')
 
+    pygame.mixer.music.load('./sound_effects/reset.mid')
+    pygame.mixer.music.play()
+
     return state
 
 

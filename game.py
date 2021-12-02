@@ -70,6 +70,7 @@ clock = pygame.time.Clock()
 game_state = {'is_running': True, 'animation_running': False, 'grid': g}
 controller = EventController(start=start_button, next=next_button, reset=reset_button)
 
+pygame.mixer.music.load("./sound_effects/intro.mid")
 
 def display(state):
     window_surface.blit(game_background, (0, 0))
@@ -83,7 +84,9 @@ def display(state):
     pygame.display.update()
 
 
+pygame.mixer.music.play()
 while game_state['is_running']:
+
     current_grid = game_state['grid']
     time_delta = clock.tick(5) / 1000.0
     for event in pygame.event.get():
