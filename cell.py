@@ -6,7 +6,7 @@ ACTIVE_COLOR = "#C0E5C8"
 
 
 class Cell(Rect):
-    def __init__(self, pos: tuple, dimensions: tuple, active=False):
+    def __init__(self, pos: tuple, dimensions: tuple, active: bool = False):
         self.active = active
 
         super().__init__(pos, dimensions)

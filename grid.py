@@ -17,14 +17,7 @@ class Grid:
             [Cell((PADDING + x * (cell_width + CELL_OFFSET), PADDING + y * (cell_height + CELL_OFFSET)), (cell_width, cell_height)) for x in range(width)] for y in
             range(height)]
 
-    def __str__(self):
-        output = ""
-        for row in self.cells:
-            for cell in row:
-                output += str(cell)
-            output += "\n"
-        return output
-
+    # change the state of one specific cell
     def flip(self, col: int, row: int):
         if col < 0 or col >= self.width:
             raise RuntimeError(
@@ -35,10 +28,11 @@ class Grid:
 
         self.cells[row][col].flip()
 
+    # update every cell in the grid to its next state
     def update(self):
-        for i, row in enumerate(self.cells):
-            for j, cell in enumerate(row):
-                living_neighbors = self.__count_living_neighbors(i, j)
+        for row_index, row in enumerate(self.cells):
+            for col_index, cell in enumerate(row):
+                living_neighbors = self.__count_living_neighbors(row_index, col_index)
                 if cell.active and (living_neighbors == 2 or living_neighbors == 3):
                     cell.set_active()
                 elif not cell.active and living_neighbors == 3:
