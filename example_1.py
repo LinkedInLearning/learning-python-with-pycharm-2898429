@@ -23,14 +23,17 @@ token = 0
 while True:
     time_delta = pygame.time.Clock().tick(1)
     if token % 3 == 0: a,b,c=a1,b1,c1
+
     if token % 3 == 1: a, b, c = a2, b2, c2
     if token % 3 == 2: a,b, c= a3,b3, c3
 
     pygame.draw.rect(window_surface,a, x)
     pygame.draw.rect(window_surface, b,y)
+
     pygame.draw.rect(window_surface,c,z)
 
     token = token + 1
     pygame.display.update()
+
 
 
