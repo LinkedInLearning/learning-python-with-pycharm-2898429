@@ -35,17 +35,16 @@ class Grid:
 
         self.cells[row][col].flip()
 
-    def __compute_future_states(self):
-        # navigate through the grid, for each cell find its valid neighbors
-        for row_index, row in enumerate(self.cells):
-            for col_index, cell in enumerate(row):
-                cell.set_future_state(self.__count_living_neighbors(col_index, row_index))
-
     def update(self):
-        self.__compute_future_states()
-        for row in self.cells:
-            for cell in row:
-                cell.update()
+        for i, row in enumerate(self.cells):
+            for j, cell in enumerate(row):
+                living_neighbors = self.__count_living_neighbors(i, j)
+                if cell.active and (living_neighbors == 2 or living_neighbors == 3):
+                    cell.set_active()
+                elif not cell.active and living_neighbors == 3:
+                    cell.set_active()
+                else:
+                    cell.set_inactive()
 
     def draw(self, surface):
         for row in self.cells:
@@ -96,8 +95,7 @@ class Grid:
                 self.flip(4, 3)
 
     # cells have up to 8 neighbours, except cells in the boundary rows and columns.
-    # this iterator yields a given position's neighbors
-    def __count_living_neighbors(self, col: int, row: int):
+    def __count_living_neighbors(self, row: int, col: int):
         if col < 0 or col >= self.width:
             raise RuntimeError(
                 f"error updating cell at column {col}: expected column number between 0 and {self.width - 1}")
