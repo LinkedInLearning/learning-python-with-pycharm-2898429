@@ -63,7 +63,7 @@ shapes_selector = pygame_gui.elements.UIDropDownMenu(['glider', 'pentadecathlon'
                                                      relative_rect=pygame.Rect((5*70+4*BUTTON_WIDTH, GAME_HEIGHT + 30), (BUTTON_WIDTH*2, BUTTON_HEIGHT)),
                                                      manager=manager)
 
-g = Grid((WINDOW_WIDTH, GAME_HEIGHT), window_surface, 20, 15)
+g = Grid((WINDOW_WIDTH, GAME_HEIGHT), 20, 15)
 g.insert_shape('glider')
 
 clock = pygame.time.Clock()

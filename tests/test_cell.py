@@ -26,11 +26,27 @@ class TestCell(TestCase):
                 self.assertFalse(inactive_test_cell.future_state, f'future_state should be false for {neighbor_count} neighbors')
 
     def test_update(self):
-        cell = Cell((0, 0), (0, 0))
-        self.assertFalse(cell.active)
-        cell.update(self, True)
-        self.assertTrue(cell.active)
+        # scenario 1: inactive cell, which will become active
+        inactive_cell = Cell((0, 0), (0, 0))
+        self.assertFalse(inactive_cell.active)
+        inactive_cell.future_state = True
+
+        inactive_cell.update()
+        self.assertTrue(inactive_cell.active, 'future_state was set to true so the cell should become active')
+        self.assertIs(inactive_cell.future_state, None, 'future_state should be reset after an update')
+
+        # scenario 2: active cell which will become inactive
+        active_cell = Cell((0, 0), (0, 0), active=True)
+        active_cell.future_state = False
+        active_cell.update()
+        self.assertFalse(active_cell.active, 'future_state was set to false so the cell should become inactive')
+        self.assertIs(active_cell.future_state, None, 'future_state should be reset after an update')
 
     def test_flip(self):
         # test the flip method of the cell class
-        self.fail()
+        cell = Cell((0, 0), (0, 0), active=True)
+        self.assertTrue(cell.active)
+        cell.flip()
+        self.assertFalse(cell.active)
+        cell.flip()
+        self.assertTrue(cell.active)
