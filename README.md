@@ -1,7 +1,10 @@
 # Learning Python with PyCharm
-This is the repository for the LinkedIn Learning course `Learning Python with PyCharm`. The full course is available from [LinkedIn Learning][lil-course-url].
+This is the repository for the LinkedIn Learning course Learning Python with PyCharm. The full course is available from [LinkedIn Learning][lil-course-url].
 
-_See the readme file in the main branch for updated instructions and information._
+![Learning Python with PyCharm][lil-thumbnail-url] 
+
+PyCharm is a leading tool for Python development. In this course, instructor Mehdi Oulmakki introduces several key best practices for Python development and shows you how to use PyCharm as a one stop shop solution for managing the intricacies of development. First, Mehdi walks you through installing Python and PyCharm and gives you some useful tips and tricks for writing and developing code with PyCharm. He shows you how to create and navigate your projects in the PyCharm UI. Next, Mehdi discusses ways to use PyCharm with Git and GitHub to organize, save, and collaborate on your work. He covers managing dependencies, then goes into facets of code quality, how debugging improves your code quality, and ways to use breakpoints and unit tests for debugging. Plus, Mehdi goes over the principles and purpose of code style and the quality-of-life features within PyCharm that help reformat and refactor your code safely.
+
 ## Instructions
 This repository has branches for each of the videos in the course. You can use the branch pop up menu in github to switch to a specific branch and take a look at the course at that stage, or you can add `/tree/BRANCH_NAME` to the URL to go to the branch you want to access.
 
@@ -20,15 +23,16 @@ To resolve this issue:
     Add changes to git using this command: git add .
 	Commit changes using this command: git commit -m "some message"
 
-## Installing
-1. To use these exercise files, you must have the following installed:
-	- [list of requirements for course]
-2. Clone this repository into your local machine using the terminal (Mac), CMD (Windows), or a GUI tool like SourceTree.
-3. [Course-specific instructions]
 
+### Instructor
 
-[0]: # (Replace these placeholder URLs with actual course URLs)
+Mehdi Oulmakki 
+                            
+Software engineer
 
-[lil-course-url]: https://www.linkedin.com/learning/
-[lil-thumbnail-url]: http://
+                            
 
+Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learning/instructors/mehdi-oulmakki).
+
+[lil-course-url]: https://www.linkedin.com/learning/learning-python-with-pycharm-14509667
+[lil-thumbnail-url]: https://cdn.lynda.com/course/2898429/2898429-1642789960777-16x9.jpg
