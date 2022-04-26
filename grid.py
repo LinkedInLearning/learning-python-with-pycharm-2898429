@@ -64,14 +64,14 @@ class Grid:
                 cell.set_inactive()
 
     def insert_shape(self, shape_name):
-        match shape_name:
-            case 'glider':
+        # match shape_name:
+            if shape_name == 'glider':
                 self.flip(2, 1)
                 self.flip(3, 2)
                 self.flip(1, 3)
                 self.flip(2, 3)
                 self.flip(3, 3)
-            case 'pentadecathlon':
+            if shape_name == 'pentadecathlon':
                 self.flip(5, 7)
                 self.flip(6, 7)
                 self.flip(7, 6)
@@ -84,7 +84,7 @@ class Grid:
                 self.flip(12, 8)
                 self.flip(13, 7)
                 self.flip(14, 7)
-            case 'lightweight':
+            if shape_name == 'lightweight':
                 self.flip(0, 0)
                 self.flip(3, 0)
                 self.flip(4, 1)
